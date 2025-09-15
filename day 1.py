@@ -1,0 +1,5 @@
+print("Hello Ollie")
+print("Hello all! Morning")
+print("my name is Kaki, I went to Peak Distract buy a bottle of water than back home")
+print("I love city walk and drink")
+print("I moved to Manchester this March !")
