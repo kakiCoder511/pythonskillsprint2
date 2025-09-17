@@ -89,3 +89,29 @@ elif diff > 0:
 else:
     print("the mean price didn't change")
 
+
+#4️⃣ Price Differences
+#- daily changes
+daily_change = np.diff(closes_arr)
+print("day change:",daily_change)
+print(len(daily_change))
+
+# biggest increase & decrease
+biggest_increase = np.max(daily_change)
+print("biggest_increase change:",biggest_increase)
+
+#biggest_decrease
+biggest_decrease =np.min(daily_change)
+print("biggest_decrease change:",biggest_decrease)
+
+# Which day had the largest increase?
+#largest_increase_date = dates_arr[np.where(day_change == biggest_increase)]
+largest_increase_date = dates_arr[np.argmax(daily_change) + 1]
+print("The largest increase date:",largest_increase_date)
+
+#largest_decrease_date
+largest_decrease_date = dates_arr[np.argmin(daily_change) + 1]
+print("The largest decrease date:",largest_decrease_date)
+
+#5️⃣ Simple Trend Visualization
+
