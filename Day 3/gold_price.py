@@ -2,8 +2,9 @@ import csv
 import numpy as np
 
 # extract the "close" column as a numpy array
-closes = [] #store in the list
-dates = [] #store the date value
+closes = []
+#extract the date value #extract dates column
+dates = []
 with open('gold_price_data.csv',"r", newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
@@ -70,8 +71,8 @@ usable_length =((len(dates_arr)//30)*30)
 
 monthly_chunks =  closes_arr[:usable_length].reshape(-1,30)
 print("Shape:", monthly_chunks.shape)
-# print("1s month:" ,monthly_chunks[0])
-# print("2nd month:" ,monthly_chunks[1])
+print("1s month:" ,monthly_chunks[0])
+print("2nd month:" ,monthly_chunks[1])
 
 #Find the average price per month using np.mean(reshaped, axis=1).
 
@@ -114,4 +115,21 @@ largest_decrease_date = dates_arr[np.argmin(daily_change) + 1]
 print("The largest decrease date:",largest_decrease_date)
 
 #5️⃣ Simple Trend Visualization
+#- simple text-based chart
+# for price in closes_arr:
+#     print(f"{price:6.2f} | " + "*" * int(price/2))
 
+# - Modify the visualization to highlight days above the average price.
+# for price in closes_arr:
+#     maker_v = "[^,^]" if price > close_mean else "[>,<]"
+#     print(f"{price:6.2f} | " + maker_v * (int(price) // 10))
+
+# - Try plotting the last 30 days instead.
+last_30days = closes_arr[-30:]
+avg_30 = last_30days.mean()
+
+print(f"30-day average: {avg_30:.2f}")
+
+for price in last_30days:
+    marker = "$" if price > avg_30 else "."
+    print(f"{price:6.2f} | " + marker * (int(price)//10))
